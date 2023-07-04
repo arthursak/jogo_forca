@@ -1,6 +1,8 @@
+import random
+
+
 def joga_forca():
     
-    import random
 
     arquivo = open("palavras.txt", "r")
     palavras = []
@@ -38,35 +40,78 @@ def joga_forca():
             for letra in palavra:
                 if chute == letra:
                     letras_certas [index] = letra
+                    print (letras_certas)
                 index += 1
         
         #Adiciona 1 erro caso a letra não esteja na palavra
         else:
             erros += 1
 
-        #Caso a variavel erros chegue a 6, enforcou vira True e o jogo finaliza com derrota
-        enforcou = erros == 6
+        desenha_forca(erros)
+
+        #Caso a variavel erros chegue a 7, enforcou vira True e o jogo finaliza com derrota
+        enforcou = erros == 7
 
         #Caso não haja mais o caracter oculto, o jogo finaliza com o acertou True
         acertou = "_" not in letras_certas
 
         if acertou:
             print(f"Você ganhou!\n A palavra era {palavra}")
-        else:
-            print("Enforcou!")
-
+        elif enforcou:
+            print(f"Perdeu!\nA palavra era {palavra}")
+        
 
     print ("Fim do game")
 
-'''
-erro1 = print ("/")
-erro2 = print ("/ \")
-erro3 = print (" | \n/ \")
-erro4 = print ("/ | \n/ \")
-erro5 = print ("/ | \\n/ \")
-erro6 = print ("  0  \n/ | \\n/ \")
+def desenha_forca(erros):
+    print("  _______     ")
+    print(" |/      |    ")
 
-'''
+    if(erros == 1):
+        print(" |      (_)   ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 2):
+        print(" |      (_)   ")
+        print(" |      \     ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 3):
+        print(" |      (_)   ")
+        print(" |      \|    ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 4):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 5):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |            ")
+
+    if(erros == 6):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      /     ")
+
+    if (erros == 7):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
 
 
 if __name__ == "__main__":
